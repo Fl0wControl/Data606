@@ -14,50 +14,59 @@ if (before && options$fig.show!='none') par(mar=c(4,4,.2,.1),cex.lab=.95,cex.axi
 
 ```{r}
 # load data
-
+library(data.table)
+library(plyr)
+data <- fread("https://raw.githubusercontent.com/Fl0wControl/Data606/master/chicagoCrimes-010116-100116.csv")
 ```
 
 
 ### Research question 
 
 **You should phrase your research question in a way that matches up with the scope of inference your dataset allows for.**
-
+H 0 : The amount of arrests of cases of theft and burglary in a residence is the same as those for assault and battery.
+H A : The amount of arrests of cases of theft and burglary in a residence is not equal to those for assault and battery.
 
 
 ### Cases 
 
 **What are the cases, and how many are there?**
-
+```{r}
+dim(data)
+```
+There are 199,518 total cases of crimes all together in the data set. The data contains information on
+date, time, location, type of crime, and the description of the crime.
 
 
 ### Data collection 
 
 **Describe the method of data collection.**
-
+The data was collected by the Chicago Police Department. As per the website, " Data is extracted from the Chicago Police Department's CLEAR (Citizen Law Enforcement Analysis and Reporting) system."
 
 
 ### Type of study 
 
 **What type of study is this (observational/experiment)?**
-
+This is an observational study.
 
 
 ### Data Source 
 
 **If you collected the data, state self-collected. If not, provide a citation/link.**
-
+The subset of data can be found here:https://raw.githubusercontent.com/Fl0wControl/Data606/master/chicagoCrimes-010116-100116.csv
+The entire data set can be found here:https://data.cityofchicago.org/Public-Safety/Crimes-2001-to-present/ijzp-q8t2
 
 
 
 ### Response 
 
 **What is the response variable, and what type is it (numerical/categorical)?**
-
+The response variable is the type of crime (theft, etc), and the type is categorical data.
 
 
 ### Explanatory 
 
 **What is the explanatory variable, and what type is it (numerical/categorival)?**
+The explanatory variable is where a crime occurred (residence), and the type is categorical.
 
 
 
@@ -65,7 +74,9 @@ if (before && options$fig.show!='none') par(mar=c(4,4,.2,.1),cex.lab=.95,cex.axi
 
 **Provide summary statistics relevant to your research question. For example, if you’re comparing means across groups provide means, SDs, sample sizes of each group. This step requires the use of R, hence a code chunk is provided below. Insert more code chunks as needed.**
 
+The code below will give you a total count of each type of crime found in the sample data set.
 ```{r}
+count(data$`Primary Type`)
 
 ```
 
